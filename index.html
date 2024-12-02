@@ -1,43 +1,46 @@
-document.getElementById('schedule').addEventListener('mouseover', function() {
-  this.style.transform = 'scale(1.2)';
-});
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Convite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
-document.getElementById('schedule').addEventListener('mouseout', function() {
-  this.style.transform = 'scale(1)';
-});
+        body {
+            font-family: 'Parisienne', cursive;
+            background-color: black;
+            color: red;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 20px;
+            color: red;
+            background-color: black;
+            border: 2px solid red;
+            position: relative;
+        }
+        #schedule {
+            transition: transform 0.3s ease;
+        }
+        #no {
+            position: absolute;
+        }
+        .emoji {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vamos ficar?</h1>
+    <p>Insira seu nome:</p>
+    <input type="text" id="nameInput" placeholder="Seu nome">
+    <button class="btn" id="schedule">É só marcar</button>
+    <button class="btn" id="no">Não</button>
+    <div id="responseEmoji" class="emoji"></div>
+    <script src="script.js"></script>
+</body>
+</html>
 
-document.getElementById('no').addEventListener('click', function() {
-  document.getElementById('responseEmoji').textContent = '😭';
-  alert('Ah, que pena!');
-});
-
-document.getElementById('schedule').addEventListener('click', function() {
-  let name = document.getElementById('nameInput').value;
-  if (name) {
-      document.getElementById('responseEmoji').textContent = '❤️';
-      sendEmail(name, true);
-  } else {
-      alert('Por favor, insira seu nome.');
-  }
-});
-
-function sendEmail(name, response) {
-  let email = 'bruno.peruzzo@escola.pr.gov.br';
-  let subject = 'Resposta ao Convite';
-  let body = `Olá Bruno,\n\n${name} respondeu ${response ? '"É só marcar"' : '"Não"'} ao convite.`;
-  
-  // Enviar e-mail usando o serviço de e-mail padrão
-  let mailto_link = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto_link;
-}
-
-function moveButton() {
-  const button = document.getElementById('no');
-  const x = Math.floor(Math.random() * (window.innerWidth - button.offsetWidth));
-  const y = Math.floor(Math.random() * (window.innerHeight - button.offsetHeight));
-  button.style.left = `${x}px`;
-  button.style.top = `${y}px`;
-}
-
-document.getElementById('no').addEventListener('mouseover', moveButton);
 
